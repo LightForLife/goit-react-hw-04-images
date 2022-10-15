@@ -18,6 +18,16 @@ export function App() {
   const [tags, setTags] = useState('');
   const [currentImgPerPage, setCurrentImgPerPage] = useState(null);
 
+  const searchImages = searchText => {
+    if (searchQuery === searchText) {
+      return;
+    }
+
+    setImages([]);
+    setCurrentPage(1);
+    setsearchQuery(searchText);
+  };
+
   useEffect(() => {
     if (!searchQuery) {
       return;
@@ -46,16 +56,6 @@ export function App() {
 
     fetchImages();
   }, [searchQuery, currentPage]);
-
-  const searchImages = searchText => {
-    if (searchQuery === searchText) {
-      return;
-    }
-
-    setImages([]);
-    setCurrentPage(1);
-    setsearchQuery(searchText);
-  };
 
   const toggleModal = () => {
     setShowModal(!showModal);
